@@ -10,28 +10,32 @@ var winCounter = 0;
 var loseCounter = 0;
 var isWin = false;
 var timer;
-var timerCount = 20;
+var timerCount = 3;
 
 // Arrays used to create blanks and letters on screen
 var lettersInChosenWord = [];
 var blanksLetters = [];
 
 // Array of words the user will guess
-var words = ["variable","array", "modulus", "object", "function", "string", "boolean"];
+var words = ["a","ab", "abc", "abcd", "abcdef", "abcdefg", "abcdefgh"];
 
 // The init function is called when the page loads 
 function init() {
-  chosenWord = words[Math.floor(Math.random() * words.length)];
-  console.log(chosenWord);
+
 }
 
 // The startGame function is called when the start button is clicked
 function startGame() {
 console.log("heehehe")
-//startTimer();
+startTimer();
+
 startButton.setAttribute("style", "background: silver");
 startButton.textContent = "Running";
- startButton.disabled = true;
+startButton.disabled = true;
+
+renderBlanks();
+checkLetters('a')
+
 
 }
 
@@ -47,6 +51,8 @@ function loseGame() {
 
 // The setTimer function starts and stops the timer and triggers winGame() and loseGame()
 function startTimer() {
+
+
  var timer = setInterval(function() {
  timerCount--;
  timerElement.textContent = timerCount;
@@ -65,6 +71,19 @@ if (timerCount === 0) {
 
 // Creates blanks on screen
 function renderBlanks() {
+
+  chosenWord = words[Math.floor(Math.random() * words.length)];
+  console.log(chosenWord);
+  //wordBlank.textContent= chosenWord
+  lettersInChosenWord = chosenWord.split("");
+  numBlanks = lettersInChosenWord.length;
+
+  for (let index = 0; index < numBlanks; index++) {
+    blanksLetters.push("_")
+    
+  }
+
+  wordBlank.textContent = blanksLetters.join(" ")
   
 
 }
@@ -94,6 +113,13 @@ function checkWin() {
 
 // Tests if guessed letter is in word and renders it to the screen.
 function checkLetters(letter) {
+
+  console.log(lettersInChosenWord);
+
+  if(lettersInChosenWord.includes(letter))
+  {
+    alert("you right")
+  }
  
 }
 
