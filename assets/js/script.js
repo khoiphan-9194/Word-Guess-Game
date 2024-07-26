@@ -4,20 +4,20 @@ var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
 
-var chosenWord = "";
-var numBlanks = 0;
-var winCounter = 0;
-var loseCounter = 0;
-var isWin = false;
-var timer;
-var timerCount = 3;
+var chosenWord = ""; // word to guess
+var numBlanks = 0; // number of blanks in word
+var winCounter = 0;// number of wins
+var loseCounter = 0;// number of losses
+var isWin = false; // flag to determine if user has won, by default set to false
+var timer; // timer variable, used to start and stop timer
+var timerCount = 5;   // timer count down
 
 // Arrays used to create blanks and letters on screen
-var lettersInChosenWord = [];
-var blanksLetters = [];
+var lettersInChosenWord = []; // array to store letters in chosen word
+var blanksLetters = []; // array to store blanks for each letter in chosen word
 
 // Array of words the user will guess
-var words = ["a","ab", "abc", "abcd", "abcdef", "abcdefg", "abcdefgh"];
+var words = ["aa","aab", "aabc", "aabcd", "aabcdef", "aabcdefg", "aabcdefgh"];
 
 // The init function is called when the page loads 
 function init() {
@@ -26,6 +26,8 @@ function init() {
 
 // The startGame function is called when the start button is clicked
 function startGame() {
+console.log(isWin)
+
 console.log("heehehe")
 startTimer();
 
@@ -34,31 +36,29 @@ startButton.textContent = "Running";
 startButton.disabled = true;
 
 renderBlanks();
-checkLetters('a')
 
 
-}
 
-// The winGame function is called when the win condition is met
-function winGame() {
+
 
 }
 
-// The loseGame function is called when timer reaches 0
-function loseGame() {
 
-}
 
 // The setTimer function starts and stops the timer and triggers winGame() and loseGame()
 function startTimer() {
 
 
- var timer = setInterval(function() {
+timer = setInterval(function() {
  timerCount--;
  timerElement.textContent = timerCount;
  if (timerCount >= 0) {
-  console.log(timerCount);
+  if (isWin) {
+    console.log(isWin)
+    clearInterval(timer);
+    winGame();
 }
+ }
 // Tests if time has run out
 if (timerCount === 0) {
   // Clears interval
@@ -69,24 +69,76 @@ if (timerCount === 0) {
  }, 1000);
 }
 
+
+
 // Creates blanks on screen
 function renderBlanks() {
 
-  chosenWord = words[Math.floor(Math.random() * words.length)];
+  chosenWord = words[Math.floor(Math.random() * words.length)]; // randomly selects a word from the words array
   console.log(chosenWord);
-  //wordBlank.textContent= chosenWord
-  lettersInChosenWord = chosenWord.split("");
-  numBlanks = lettersInChosenWord.length;
 
+  lettersInChosenWord = chosenWord.split(""); // splits the chosen word into an array of characters
+  numBlanks = lettersInChosenWord.length; // gets the number of characters in the chosen word
   for (let index = 0; index < numBlanks; index++) {
     blanksLetters.push("_")
     
   }
-
   wordBlank.textContent = blanksLetters.join(" ")
   
-
 }
+
+
+
+// Tests if guessed letter is in word and renders it to the screen.
+function checkLetters(letter) {
+
+  console.log(lettersInChosenWord); 
+  console.log(blanksLetters)
+  var letterInWord = false;
+  if(lettersInChosenWord.includes(letter)) // check if the letter is in the chosen word
+  {
+   letterInWord = true; // set the flag to true
+  }
+
+  if(letterInWord) // if the letter is in the word
+  {
+
+    console.log("letter is in word");
+    for( let i = 0; i< numBlanks;i++)
+    {
+      if(chosenWord[i] === letter)
+      {
+        blanksLetters[i] = letter;
+      }
+    }
+    console.log(blanksLetters);
+    wordBlank.textContent = blanksLetters.join(" ")
+  }
+
+
+ 
+}
+
+// Attach event listener to document to listen for key event
+document.addEventListener("keydown", function(event) {
+  //console.log(event.key);
+  //checkLetters(event.key)
+  if(timerCount === 0)
+  {
+    return;
+  }
+  var letterInPut = event.key.toLowerCase();
+  checkLetters(letterInPut);
+  checkWin();
+
+
+
+});
+
+// Attach event listener to start button to call startGame function on click
+
+init();
+
 
 // Updates win count on screen and sets win count to client storage
 function setWins() {
@@ -109,28 +161,25 @@ function getlosses() {
 
 function checkWin() {
 
-}
-
-// Tests if guessed letter is in word and renders it to the screen.
-function checkLetters(letter) {
-
-  console.log(lettersInChosenWord);
-
-  if(lettersInChosenWord.includes(letter))
+  if(chosenWord === blanksLetters.join(""))
   {
-    alert("you right")
+    isWin = true;
+     
   }
- 
+
 }
 
-// Attach event listener to document to listen for key event
-document.addEventListener("keydown", function(event) {
-  console.log(event.key);
-});
 
-// Attach event listener to start button to call startGame function on click
+// The winGame function is called when the win condition is met
+function winGame() {
+  wordBlank.textContent = "YOU WON!!!🏆 ";
+  alert("You won!!");
+}
 
-init();
+// The loseGame function is called when timer reaches 0
+function loseGame() {
+
+}
 
 
 // Attach event listener to start button to call startGame function on click
