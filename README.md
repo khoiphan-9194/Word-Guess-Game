@@ -1,5 +1,5 @@
 # Module 04 Mini-Project: Word Guess
-
+https://khoiphan-9194.github.io/Word-Guess-Game/
 In this activity, you will work with a group to build a game using JavaScript and Web APIs.
 
 ## Instructions
