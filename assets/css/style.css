@@ -153,5 +153,15 @@ background-color: #cdea0d;
   .timer {
     height: 200px;
   }
+
+  #fillBlank {
+  
+   position: relative;
+
+   bottom: 55px;
+
+   
+   } 
+   
  
 }
