@@ -242,14 +242,16 @@ function winGame() {
 
 
 
-  wordBlank.textContent = "YOU WON!!!🏆 "+"The answer: "+ chosenWord.toUpperCase();
-
+ 
   winCounter++;
   setWins();
   removeInputBlank();
   startButton.removeAttribute("style")
   startButton.disabled = false;
   startButton.textContent = "Start";
+  wordBlank.textContent = "YOU WON!!!🏆 "
+  alert("The answer: "+ chosenWord.toUpperCase())
+  
  
 
 
