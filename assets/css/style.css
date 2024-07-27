@@ -141,7 +141,7 @@ background-color: #cdea0d;
 
 @media screen and (max-width: 504px) {
   .large-font {
-    font-size: 2em;
+    font-size: 1em;
   }
 
   .reset-button {

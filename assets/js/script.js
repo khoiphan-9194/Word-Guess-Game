@@ -293,8 +293,8 @@ resetButton.addEventListener("click",resetGame)
 
 function popUpmessage(msg,duration)
 {
- var el = document.createElement("h1");
- el.setAttribute("style","position:absolute;top:45%;left:26%;background-color:white;");
+ var el = document.createElement("h3");
+ el.setAttribute("style","position:absolute;top:28%;left:26%;background-color:white;");
  el.innerHTML = msg;
  setTimeout(function(){
   el.parentNode.removeChild(el);
