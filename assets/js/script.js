@@ -26,10 +26,10 @@ var questions=
 [
   "What year was pandamic? ", "who was the 45th president of The U.S?",
   "What is the capital of California?","What main language is used to build a website?",
-  "What is the biggest state of The U.S"
+  "What is the biggest state of The U.S?","Who exactly wrote the Declaration of Independence?"
 
 ]
-var words = ["2019","biden", "sacramento", "javascript", "alaska"];
+var words = ["2019","joe biden", "sacramento", "javascript", "alaska","thomas jefferson"];
 
 // The init function is called when the page loads 
 function init() {
@@ -160,7 +160,7 @@ function checkLetters(letter) {
       }
     }
     console.log(blanksLetters);
-    popUpmessage(choseCompliment,1000);
+    popUpmessage(choseCompliment,500);
 
 
   
@@ -170,7 +170,7 @@ function checkLetters(letter) {
   else if(!letterInWord)
   {
 
-    popUpmessage("Your guess was wrong",1000)
+    popUpmessage("Your guess was wrong",500)
   }
 
 
