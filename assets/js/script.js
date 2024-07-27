@@ -13,6 +13,10 @@ var isWin = false; // flag to determine if user has won, by default set to false
 var timer; // timer variable, used to start and stop timer
 var timerCount;   // timer count down
 
+var inputFillBlank = document.getElementById("fillBlank");
+
+
+
 // Arrays used to create blanks and letters on screen
 var lettersInChosenWord = []; // array to store letters in chosen word
 var blanksLetters = []; // array to store blanks for each letter in chosen word
@@ -40,32 +44,50 @@ console.log("Let start the games")
 startButton.setAttribute("style", "background: silver");
 startButton.textContent = "Running";
 startButton.disabled = true;
+// inputFillBlank.setAttribute("value","")
+
 
 renderBlanks();
+createInputBlank();
 startTimer();
-
-
-
-
 
 
 
 }
 
 
+function createInputBlank(){
+  var input = document.createElement("input");
+  input.setAttribute('id','fillBlank')
+  input.setAttribute('type', 'text');
+  input.setAttribute("placeholder","Enter your guess")
+  input.setAttribute("style","background:yellow; width:20%;height:10%;position:relative;left:20%")
+  // input.setAttribute("style","position:relative;top:8%;left:5%");
+  document.body.appendChild(input);
+}
+
+function removeInputBlank()
+{
+  var element = document.getElementById("fillBlank"); // notice the change
+element.parentNode.removeChild(element); 
+}
+
+
+
 
 // The setTimer function starts and stops the timer and triggers winGame() and loseGame()
 function startTimer() {
-timerCount=10;
+timerCount=15;
 
 timer = setInterval(function() {
  timerCount--;
  timerElement.textContent = timerCount;
  if (timerCount >= 0 )
   {
-  if (isWin &&timerCount>0) {
+  if (isWin) {
     console.log(isWin)
     winGame();
+    
     clearInterval(timer);
   
     }
@@ -221,6 +243,7 @@ function winGame() {
 
   winCounter++;
   setWins();
+  removeInputBlank();
   startButton.removeAttribute("style")
   startButton.disabled = false;
   startButton.textContent = "Start";
@@ -234,9 +257,11 @@ function loseGame() {
   wordBlank.textContent="You failed";
   loseCounter++;
   setLosses();
+  removeInputBlank();
   startButton.removeAttribute("style")
   startButton.disabled = false;
   startButton.textContent = "Start";
+ 
 
 
 }
@@ -273,26 +298,6 @@ function popUpmessage(msg,duration)
 }
 
 
-function generateUniqueRandom(maxNumber) {
-    //Generate random number
-    let random = (Math.random() * maxNumber).toFixed();
-
-    //Coerce to number by boxing
-    random = Number(random);
-
-    if(!haveIt.includes(random)) {
-        haveIt.push(random);
-        return random;
-    } else {
-        if(haveIt.length < maxNumber) {
-          //Recursively generate number
-         return  generateUniqueRandom(maxNumber);
-        } else {
-          console.log('No more numbers available.')
-          return false;
-        }
-    }
-}
 
 
 

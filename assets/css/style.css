@@ -105,6 +105,17 @@ section {
   padding: 55px;
 }
 
+ /* #fillBlank {
+ width: 50%;
+height: 10%;
+position: relative;
+left: 25%;
+top: 8%;
+background-color: #879274;
+
+
+} */
+
 @media screen and (max-width: 1183px) {
   main {
     flex-direction: column;
