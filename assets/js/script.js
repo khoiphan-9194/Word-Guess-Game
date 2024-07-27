@@ -13,7 +13,7 @@ var isWin = false; // flag to determine if user has won, by default set to false
 var timer; // timer variable, used to start and stop timer
 var timerCount;   // timer count down
 
-var inputFillBlank = document.getElementById("fillBlank");
+var section_mainInput = document.querySelector(".main-input")
 
 
 
@@ -44,7 +44,7 @@ console.log("Let start the games")
 startButton.setAttribute("style", "background: silver");
 startButton.textContent = "Running";
 startButton.disabled = true;
-// inputFillBlank.setAttribute("value","")
+
 
 
 renderBlanks();
@@ -58,12 +58,12 @@ startTimer();
 
 function createInputBlank(){
   var input = document.createElement("input");
+ 
   input.setAttribute('id','fillBlank')
   input.setAttribute('type', 'text');
   input.setAttribute("placeholder","Enter your guess")
-  input.setAttribute("style","background:yellow; width:20%;height:10%;position:relative;left:20%")
-  // input.setAttribute("style","position:relative;top:8%;left:5%");
-  document.body.appendChild(input);
+
+  section_mainInput.appendChild(input);
 }
 
 function removeInputBlank()
@@ -239,7 +239,10 @@ function checkWin() {
 
 // The winGame function is called when the win condition is met
 function winGame() {
-  wordBlank.innerText = "YOU WON!!!🏆 \nThe answer: "+ chosenWord.toUpperCase();
+
+
+
+  wordBlank.textContent = "YOU WON!!!🏆 "+"The answer: "+ chosenWord.toUpperCase();
 
   winCounter++;
   setWins();

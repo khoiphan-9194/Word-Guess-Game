@@ -105,16 +105,16 @@ section {
   padding: 55px;
 }
 
- /* #fillBlank {
+#fillBlank {
  width: 50%;
-height: 10%;
+height: 15%;
 position: relative;
 left: 25%;
 top: 8%;
-background-color: #879274;
+background-color: #cdea0d;
 
+} 
 
-} */
 
 @media screen and (max-width: 1183px) {
   main {
