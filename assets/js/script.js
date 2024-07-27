@@ -29,7 +29,7 @@ var questions=
   "What is the biggest state of The U.S?","Who exactly wrote the Declaration of Independence?"
 
 ]
-var words = ["2019","joe biden", "sacramento", "javascript", "alaska","thomas jefferson"];
+var words = ["2019","joe-biden", "sacramento", "javascript", "alaska","thomas-jefferson"];
 
 // The init function is called when the page loads 
 function init() {
