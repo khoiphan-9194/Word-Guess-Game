@@ -86,6 +86,8 @@ section {
 
 .word-blanks {
   line-height: 360px;
+  position: relative;
+  top:5%;
 }
 
 .large-font {
