@@ -26,10 +26,13 @@ var questions=
 [
   "What year was pandamic? ", "who was the 45th president of The U.S?",
   "What is the capital of California?","What main language is used to build a website?",
-  "What is the biggest state of The U.S?","Who exactly wrote the Declaration of Independence?"
+  "What is the biggest state of The U.S?","Who exactly wrote the Declaration of Independence?",
+  "Where does the President of the United States live while in office?",
+  "What do bees make?",
+  "What is the world's largest ocean?"
 
 ]
-var words = ["2019","joe-biden", "sacramento", "javascript", "alaska","thomas-jefferson"];
+var words = ["2019","joe-biden", "sacramento", "javascript", "alaska","thomas-jefferson","the-white-house","honey","pacific-ocean"];
 
 // The init function is called when the page loads 
 function init() {
@@ -123,6 +126,11 @@ function renderBlanks() {
   lettersInChosenWord = chosenWord.split(""); // splits the chosen word into an array of characters
   numBlanks = lettersInChosenWord.length; // gets the number of characters in the chosen word
   for (let index = 0; index < numBlanks; index++) {
+    if(lettersInChosenWord[index] === "-")
+    {
+      blanksLetters.push("-")
+    }
+    else
     blanksLetters.push("_")
     
   }
@@ -293,8 +301,9 @@ resetButton.addEventListener("click",resetGame)
 
 function popUpmessage(msg,duration)
 {
- var el = document.createElement("h5");
- el.setAttribute("style","position:absolute;top:38%;left:26%;background-color:white;");
+ var el = document.createElement("p");
+ //el.setAttribute("style","position:absolute;top:300px;left:175px;background-color:white;font-size:15px;padding:10px;border:1px solid black");
+ el.setAttribute("id","popUp")
  el.innerHTML = msg;
  setTimeout(function(){
   el.parentNode.removeChild(el);
