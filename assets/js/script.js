@@ -80,7 +80,7 @@ element.parentNode.removeChild(element);
 
 // The setTimer function starts and stops the timer and triggers winGame() and loseGame()
 function startTimer() {
-timerCount=30;
+timerCount= 30;
 
 timer = setInterval(function() {
  timerCount--;
